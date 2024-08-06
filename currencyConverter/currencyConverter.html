@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title></title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link rel="stylesheet" href="./currencyConverter.css" />
+        <script src="./currencyConverter.js" defer></script>
+    </head>
+    <body>
+        <main class="wrap">
+            <h1>환율계산기</h1>
+            <div class="con">
+                <div class="currency">
+                    <p>Amount</p>
+                    <div class="sub">
+                        <select name="currency-one" id="currency-one"></select>
+                        <input type="number" id="amount-one" value="1" />
+                    </div>
+                </div>
+                <div class="currency">
+                    <p>Converted Amount</p>
+                    <div class="sub">
+                        <select name="currency-two" id="currency-two"></select>
+                        <input type="number" id="amount-two" value="1.3" />
+                    </div>
+                </div>
+                <button
+                    id="swap"
+                    class="fa-solid fa-arrow-right-arrow-left"
+                ></button>
+                <div id="line"></div>
+            </div>
+            <div class="bot">
+                <span>표시환율</span>
+                <p id="rate"></p>
+            </div>
+        </main>
+    </body>
+</html>
