@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+li {
+    list-style: none;
+}
+body {
+    background-color: #c0c0c0;
+}
+.wrap {
+    /* border: 1px solid red; */
+    max-width: 500px;
+    width: 80%;
+    height: calc(100vh - 100px);
+    margin: 50px auto;
+    border-radius: 2rem;
+    overflow: hidden;
+}
+h1,
+footer {
+    text-align: center;
+    background-image: linear-gradient(
+        -40deg,
+        rgba(235, 176, 51, 1) 0%,
+        rgba(252, 110, 69, 1) 100%
+    );
+    color: white;
+}
+h1 {
+    height: 100px;
+    line-height: 100px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+footer {
+    height: 150px;
+}
+.itemInput {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    outline: none;
+}
+.items {
+    /* border: 1px solid lightseagreen; */
+    height: calc(100vh - 350px);
+    overflow-y: scroll;
+    background-color: #e1e1e1;
+    padding: 20px 1rem;
+}
+.item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted #292929;
+}
+.item > * {
+    /* border: 1px solid red; */
+}
+.item span {
+    width: calc(100% - 50px);
+    /* flex: 1; */
+    padding: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.deleteBtn {
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.deleteBtn:hover {
+    color: tomato;
+}
+.addBtn {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 60px;
+    height: 60px;
+    background-color: black;
+    margin-top: 1rem;
+    border-radius: 50%;
+}
+.addBtn:hover {
+    color: black;
+    background-color: white;
+}
