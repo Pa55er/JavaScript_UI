@@ -24,7 +24,7 @@ const cardData = JSON.parse(localStorage.getItem("cards")) || [];
 let cardsEl = [];
 let currentActiveCard;
 
-// 첫번째 로드인지 여부
+// 첫번째 로드인지 여부를 위한 플레그 변수
 let isFirstLoad = true;
 
 // 카드생성
@@ -57,8 +57,9 @@ const createCard = (data, i) => {
         cardData.splice(e.target.dataset.num, 1);
         localStorage.setItem("cards", JSON.stringify(cardData));
 
-        // 삭제하게 되면 어느 li를 active로 지정하라는 요구사항이 없어서 첫번쨰 li를 active 처리함.
+        // 삭제하게 되면 어느 li를 active로 지정하라는 요구사항이 없어서 첫로드와 똑같이 첫번쨰 li를 active 처리함.
         isFirstLoad = true;
+        // ul 새로 로딩
         createCards();
     });
 
@@ -87,9 +88,11 @@ const createCards = () => {
     updateCurrentText();
     isFirstLoad = false;
 };
+
+// 초기 init
 createCards();
 
-// 요소 추가하기
+// 모달 창에서 요소 추가하기
 const addCard = () => {
     const question = $question.value.trim();
     const answer = $answer.value.trim();
@@ -102,6 +105,7 @@ const addCard = () => {
         $question.value = "";
         $answer.value = "";
         toggleClass(false);
+        // ul 새로 로딩
         createCards();
     } else {
         alert("내용을 입력해주세요");
@@ -121,7 +125,7 @@ document.addEventListener("click", (e) => {
     }
 });
 
-// navigation
+// 카드 li 요소들에 isFirstLoad 여부에 따라 클래스 부여 다르게 함.
 const moveCard = (direction) => {
     if (cardData.length === 0) return;
     cardsEl[currentActiveCard - 1].className = `card ${
@@ -137,14 +141,15 @@ const moveCard = (direction) => {
 $next.addEventListener("click", () => moveCard(1));
 $prev.addEventListener("click", () => moveCard(-1));
 
-// current
+// current 조작
 function updateCurrentText() {
     $current.innerText = ` ${currentActiveCard}/${cardsEl.length} `;
 }
 
-// clear
+// 카드 전체 삭제
 $clear.addEventListener("click", () => {
     localStorage.clear("cards");
     $cardsContainer.innerHTML = "";
+    // ul 새로 로딩
     createCards();
 });
