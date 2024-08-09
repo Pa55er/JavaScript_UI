@@ -13,7 +13,7 @@ const $prev = document.getElementById("prev");
 const $next = document.getElementById("next");
 const $addCard = document.getElementById("add-card");
 
-let cardData;
+const cardData = JSON.parse(localStorage.getItem("cards")) || [];
 
 // [새로운 카드를 등록 하세요]를 클릭하면 toggleClass(true) 실행 V
 // 게시물 관리를 위한 id 생성
@@ -23,6 +23,8 @@ let cardData;
 
 let cardsEl = [];
 let currentActiveCard;
+
+// 첫번째 로드인지 여부
 let isFirstLoad = true;
 
 // 카드생성
@@ -30,6 +32,7 @@ const createCard = (data, i) => {
     const card = document.createElement("li");
     card.classList.add("card");
 
+    // 첫번째 로드면 active가 첫번째 li한테 감
     const range = isFirstLoad ? 0 : cardData.length - 1;
     if (i === range) {
         card.classList.add("active");
@@ -53,6 +56,8 @@ const createCard = (data, i) => {
     card.querySelector(".deleteCard").addEventListener("click", (e) => {
         cardData.splice(e.target.dataset.num, 1);
         localStorage.setItem("cards", JSON.stringify(cardData));
+
+        // 삭제하게 되면 어느 li를 active로 지정하라는 요구사항이 없어서 첫번쨰 li를 active 처리함.
         isFirstLoad = true;
         createCards();
     });
@@ -63,7 +68,6 @@ const createCard = (data, i) => {
 
 // ul 로딩
 const createCards = () => {
-    cardData = JSON.parse(localStorage.getItem("cards")) || [];
     cardsEl = [];
     if (cardData.length === 0) {
         $cardsContainer.innerHTML = `
@@ -77,6 +81,8 @@ const createCards = () => {
     $cardsContainer.classList.remove("nolist");
     $cardsContainer.innerHTML = ``;
     cardData.forEach((data, i) => createCard(data, i));
+
+    // 현재 위치한 li의 인덱스 값을 할당
     currentActiveCard = isFirstLoad ? 1 : cardsEl.length;
     updateCurrentText();
     isFirstLoad = false;
